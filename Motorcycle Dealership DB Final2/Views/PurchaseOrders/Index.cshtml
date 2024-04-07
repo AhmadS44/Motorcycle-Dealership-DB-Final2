@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Motorcycle_Dealership_DB_Final2.Models.PurchaseOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer.CustomerID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PurchaseOrderID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PurchaseOrderID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PurchaseOrderID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Motorcycle_Dealership_DB_Final2.Areas.Identity.Data;
+using Motorcycle_Dealership_DB_Final2.Models;
 
 namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data;
 
@@ -23,6 +24,18 @@ public class Motorcycle_Dealership_DB_Final2Context : IdentityDbContext<Applicat
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
+
+public DbSet<Motorcycle_Dealership_DB_Final2.Models.Customer> Customer { get; set; } = default!;
+
+public DbSet<Motorcycle_Dealership_DB_Final2.Models.Inventory> Inventory { get; set; } = default!;
+
+public DbSet<Motorcycle_Dealership_DB_Final2.Models.Location> Location { get; set; } = default!;
+
+public DbSet<Motorcycle_Dealership_DB_Final2.Models.Motorcycle> Motorcycle { get; set; } = default!;
+
+public DbSet<Motorcycle_Dealership_DB_Final2.Models.PurchaseOrder> PurchaseOrder { get; set; } = default!;
+
+public DbSet<Motorcycle_Dealership_DB_Final2.Models.Supplier> Supplier { get; set; } = default!;
 }
 
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
