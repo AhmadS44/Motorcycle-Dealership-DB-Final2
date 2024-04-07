@@ -71,6 +71,21 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [StringLength(20, ErrorMessage = "The first name should be limited to 20 characters.")]
+            [Display(Name = "Firstname")]
+            public string FirstName { get; set; }
+
+
+            [Required]
+            [StringLength(20, ErrorMessage = "The last name should be limited to 20 characters.")]
+            [Display(Name = "Firstname")]
+            public string LastName { get; set; }
+
+            [Required]
+            [StringLength(10, ErrorMessage = "The phone number should be limited to 10 characters.")]
+            [Display(Name = "Firstname")]
+            public string PhoneNumber { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,6 +129,10 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
