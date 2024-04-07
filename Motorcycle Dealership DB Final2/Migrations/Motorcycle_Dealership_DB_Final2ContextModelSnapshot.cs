@@ -268,6 +268,98 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                     b.ToTable("Customer");
                 });
 
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Inventory", b =>
+                {
+                    b.Property<int>("InventoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InventoryID"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Function")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MotorcycleID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("InventoryID");
+
+                    b.HasIndex("MotorcycleID");
+
+                    b.ToTable("Inventory");
+                });
+
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Location", b =>
+                {
+                    b.Property<int>("LocationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocationID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Zip")
+                        .HasColumnType("int");
+
+                    b.HasKey("LocationID");
+
+                    b.ToTable("Location");
+                });
+
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Motorcycle", b =>
+                {
+                    b.Property<int>("MotorcycleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MotorcycleID"));
+
+                    b.Property<string>("Colour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Weight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("MotorcycleID");
+
+                    b.ToTable("Motorcycle");
+                });
+
             modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.PurchaseOrder", b =>
                 {
                     b.Property<int>("PurchaseOrderID")
@@ -297,6 +389,55 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                     b.HasIndex("CustomerID");
 
                     b.ToTable("PurchaseOrder");
+                });
+
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Supplier", b =>
+                {
+                    b.Property<int>("SupplierID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InventoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Zip")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupplierID");
+
+                    b.HasIndex("InventoryID");
+
+                    b.HasIndex("LocationID");
+
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -350,6 +491,17 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Inventory", b =>
+                {
+                    b.HasOne("Motorcycle_Dealership_DB_Final2.Models.Motorcycle", "motorcycle")
+                        .WithMany("Inventory")
+                        .HasForeignKey("MotorcycleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("motorcycle");
+                });
+
             modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.PurchaseOrder", b =>
                 {
                     b.HasOne("Motorcycle_Dealership_DB_Final2.Models.Customer", "customer")
@@ -361,9 +513,43 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                     b.Navigation("customer");
                 });
 
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Supplier", b =>
+                {
+                    b.HasOne("Motorcycle_Dealership_DB_Final2.Models.Inventory", "Inventory")
+                        .WithMany("Supplier")
+                        .HasForeignKey("InventoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Motorcycle_Dealership_DB_Final2.Models.Location", "Location")
+                        .WithMany("Supplier")
+                        .HasForeignKey("LocationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventory");
+
+                    b.Navigation("Location");
+                });
+
             modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Customer", b =>
                 {
                     b.Navigation("PurchaseOrder");
+                });
+
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Inventory", b =>
+                {
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Location", b =>
+                {
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("Motorcycle_Dealership_DB_Final2.Models.Motorcycle", b =>
+                {
+                    b.Navigation("Inventory");
                 });
 #pragma warning restore 612, 618
         }

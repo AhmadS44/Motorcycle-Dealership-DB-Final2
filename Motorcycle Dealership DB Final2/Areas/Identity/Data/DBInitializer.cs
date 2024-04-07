@@ -20,11 +20,11 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
                 context.Customer.Add(c);
             }
 
-            if (context.Customer.Any()) ;
+
+            if (context.Supplier.Any()) ;
             {
                 return;
             }
-
 
             var supplier = new Supplier[]
             {
@@ -35,26 +35,26 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
                 context.Supplier.Add(s);
             }
 
-            if (context.Supplier.Any()) ;
-            {
-                return;
-            }
-
-
-            var inventory = new Inventory[]
-            {
-                new Inventory {MotorcycleID= 1, Model= "Toyota", PhoneNumber= 0212826182, Email= "inventorystorage1@gmail.com", Function="Storage"}
-            };
-            foreach (Inventory i in inventory)
-            {
-                context.Inventory.Add(i);
-            }
 
             if (context.Inventory.Any()) ;
             {
                 return;
             }
 
+            var Inventory = new Inventory[]
+            {
+                new Inventory {MotorcycleID= 1, Model= "Toyota", PhoneNumber= 0212826182, Email= "inventorystorage1@gmail.com", Function="Storage"}
+            };
+            foreach (Inventory i in Inventory)
+            {
+                context.Inventory.Add(i);
+            }
+
+
+            if (context.Location.Any()) ;
+            {
+                return;
+            }
 
             var location = new Location[]
             {
@@ -65,11 +65,11 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
                 context.Location.Add(l);
             }
 
-            if (context.Location.Any()) ;
+
+            if (context.Motorcycle.Any()) ;
             {
                 return;
             }
-
 
             var motorcycle = new Motorcycle[]
             {
@@ -80,11 +80,11 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
                 context.Motorcycle.Add(m);
             }
 
-            if (context.Motorcycle.Any()) ;
+
+            if (context.PurchaseOrder.Any()) ;
             {
                 return;
             }
-
 
             var PurchaseOrder = new PurchaseOrder[]
             {
@@ -95,10 +95,6 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
                 context.PurchaseOrder.Add(p);
             }
 
-            if (context.PurchaseOrder.Any()) ;
-            {
-                return;
-            }
         }
     }
 }

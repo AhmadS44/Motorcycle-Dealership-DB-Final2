@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Motorcycle_Dealership_DB_Final2.Migrations
 {
     /// <inheritdoc />
-    public partial class Identitytable : Migration
+    public partial class identitytable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,6 +67,39 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customer", x => x.CustomerID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Location",
+                columns: table => new
+                {
+                    LocationID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Zip = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Location", x => x.LocationID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Motorcycle",
+                columns: table => new
+                {
+                    MotorcycleID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Colour = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Motorcycle", x => x.MotorcycleID);
                 });
 
             migrationBuilder.CreateTable(
@@ -198,6 +231,62 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Inventory",
+                columns: table => new
+                {
+                    InventoryID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MotorcycleID = table.Column<int>(type: "int", nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Function = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inventory", x => x.InventoryID);
+                    table.ForeignKey(
+                        name: "FK_Inventory_Motorcycle_MotorcycleID",
+                        column: x => x.MotorcycleID,
+                        principalTable: "Motorcycle",
+                        principalColumn: "MotorcycleID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Supplier",
+                columns: table => new
+                {
+                    SupplierID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LocationID = table.Column<int>(type: "int", nullable: false),
+                    InventoryID = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Zip = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supplier", x => x.SupplierID);
+                    table.ForeignKey(
+                        name: "FK_Supplier_Inventory_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Inventory",
+                        principalColumn: "InventoryID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Supplier_Location_LocationID",
+                        column: x => x.LocationID,
+                        principalTable: "Location",
+                        principalColumn: "LocationID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -238,9 +327,24 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Inventory_MotorcycleID",
+                table: "Inventory",
+                column: "MotorcycleID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PurchaseOrder_CustomerID",
                 table: "PurchaseOrder",
                 column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier_InventoryID",
+                table: "Supplier",
+                column: "InventoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier_LocationID",
+                table: "Supplier",
+                column: "LocationID");
         }
 
         /// <inheritdoc />
@@ -265,6 +369,9 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                 name: "PurchaseOrder");
 
             migrationBuilder.DropTable(
+                name: "Supplier");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -272,6 +379,15 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customer");
+
+            migrationBuilder.DropTable(
+                name: "Inventory");
+
+            migrationBuilder.DropTable(
+                name: "Location");
+
+            migrationBuilder.DropTable(
+                name: "Motorcycle");
         }
     }
 }
