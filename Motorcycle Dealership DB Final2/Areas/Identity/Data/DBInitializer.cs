@@ -39,6 +39,66 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
             {
                 return;
             }
+
+
+            var inventory = new Inventory[]
+            {
+                new Inventory {MotorcycleID= 1, Model= "Toyota", PhoneNumber= 0212826182, Email= "inventorystorage1@gmail.com", Function="Storage"}
+            };
+            foreach (Inventory i in inventory)
+            {
+                context.Inventory.Add(i);
+            }
+
+            if (context.Inventory.Any()) ;
+            {
+                return;
+            }
+
+
+            var location = new Location[]
+            {
+                new Location {Country="New Zealand", City="Auckland", Address= "92 Woolworth Street", Zip=2821, PhoneNumber=0218261824}
+            };
+            foreach (Location l in location)
+            {
+                context.Location.Add(l);
+            }
+
+            if (context.Location.Any()) ;
+            {
+                return;
+            }
+
+
+            var motorcycle = new Motorcycle[]
+            {
+                new Motorcycle {Model= "Toyota", Year=1999, Weight= "160kg", Colour="Silver"}
+            };
+            foreach (Motorcycle m in motorcycle)
+            {
+                context.Motorcycle.Add(m);
+            }
+
+            if (context.Motorcycle.Any()) ;
+            {
+                return;
+            }
+
+
+            var PurchaseOrder = new PurchaseOrder[]
+            {
+                new PurchaseOrder {CustomerID= 1, PurchaseDate=DateTime.Parse("2002-07-02"), Model="Toyota", Zip=9281, PhoneNumber=0212727122}
+            };
+            foreach (PurchaseOrder p in PurchaseOrder)
+            {
+                context.PurchaseOrder.Add(p);
+            }
+
+            if (context.PurchaseOrder.Any()) ;
+            {
+                return;
+            }
         }
     }
 }
