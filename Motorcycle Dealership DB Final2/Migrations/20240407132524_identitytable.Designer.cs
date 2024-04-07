@@ -12,7 +12,7 @@ using Motorcycle_Dealership_DB_Final2.Areas.Identity.Data;
 namespace Motorcycle_Dealership_DB_Final2.Migrations
 {
     [DbContext(typeof(Motorcycle_Dealership_DB_Final2Context))]
-    [Migration("20240407115816_identitytable")]
+    [Migration("20240407132524_identitytable")]
     partial class identitytable
     {
         /// <inheritdoc />
