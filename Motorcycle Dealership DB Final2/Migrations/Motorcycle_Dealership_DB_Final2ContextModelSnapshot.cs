@@ -264,7 +264,6 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("PhoneNumber")
-                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.HasKey("CustomerID");
@@ -286,11 +285,13 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
 
                     b.Property<string>("Function")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("MotorcycleID")
                         .HasColumnType("int");

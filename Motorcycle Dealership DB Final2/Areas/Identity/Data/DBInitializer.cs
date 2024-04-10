@@ -16,15 +16,15 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
 
             var customers = new Customer[]
             {
-           new Customer {FirstName= "Daniel", LastName="Patel", PhoneNumber=021728281, Address= "25 Main Street, Auckland Central", Email="Danielpatel@gmail.com"},
-           new Customer {FirstName= "Emily", LastName="Johnson", PhoneNumber=028228531, Address= "10 Park Avenue, Remuera", Email="emilyj@gmail.com"},
-           new Customer {FirstName= "Sophia", LastName="Williams", PhoneNumber=021922581, Address= "7 Elm Road, Mount Eden", Email="Swilliams22@gmail.com"},
-           new Customer {FirstName= "Ethan", LastName="Browns", PhoneNumber=021758299, Address= "36 Beach Road, Takapuna", Email="ethanB@gmail.com"},
-           new Customer {FirstName= "Olivia", LastName="Davis", PhoneNumber=021724291, Address= "14 Oak Street, Ponsonby", Email="oliviaDa88@gmail.com"},
-           new Customer {FirstName= "Jacob", LastName="Martinez", PhoneNumber=021128741, Address= "3 Maple Crescent, Albany", Email="jacobMartinez22@gmail.com"},
-           new Customer {FirstName= "Ava", LastName="Garcia", PhoneNumber=021918281, Address= "45 Pine Avenue, Epsom", Email="avag9@gmail.com"},
-           new Customer {FirstName= "William", LastName="Jones", PhoneNumber=021723821, Address= "22 Willow Lane, Newmarket", Email="williamj21@gmail.com"},
-           new Customer {FirstName= "Isabella", LastName="Rodriguez", PhoneNumber=021298771, Address= "18 Cedar Grove, Henderson", Email="irodriguez2@gmail.com"},
+           new Customer {FirstName= "Daniel", LastName="Patel", PhoneNumber=0217282816, Address= "25 Main Street, Auckland Central", Email="Danielpatel@gmail.com"},
+           new Customer {FirstName= "Emily", LastName="Johnson", PhoneNumber=0212285317, Address= "10 Park Avenue, Remuera", Email="emilyj@gmail.com"},
+           new Customer {FirstName= "Sophia", LastName="Williams", PhoneNumber=0219225813, Address= "7 Elm Road, Mount Eden", Email="Swilliams22@gmail.com"},
+           new Customer {FirstName= "Ethan", LastName="Browns", PhoneNumber=0217582998, Address= "36 Beach Road, Takapuna", Email="ethanB@gmail.com"},
+           new Customer {FirstName= "Olivia", LastName="Davis", PhoneNumber=0217242918, Address= "14 Oak Street, Ponsonby", Email="oliviaDa88@gmail.com"},
+           new Customer {FirstName= "Jacob", LastName="Martinez", PhoneNumber=0211287413, Address= "3 Maple Crescent, Albany", Email="jacobMartinez22@gmail.com"},
+           new Customer {FirstName= "Ava", LastName="Garcia", PhoneNumber=0219182812, Address= "45 Pine Avenue, Epsom", Email="avag9@gmail.com"},
+           new Customer {FirstName= "William", LastName="Jones", PhoneNumber=0217238214, Address= "22 Willow Lane, Newmarket", Email="williamj21@gmail.com"},
+           new Customer {FirstName= "Isabella", LastName="Rodriguez", PhoneNumber=0212987714, Address= "18 Cedar Grove, Henderson", Email="irodriguez2@gmail.com"},
             new Customer { FirstName = "Liam", LastName = "Anderson", PhoneNumber = 0217912381, Address = "29 Birch Street, Howick", Email = "liamanderson0@gmail.com" },
             };
             foreach (Customer c in customers)
@@ -95,7 +95,7 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
 
             var suppliers = new Supplier[]
           {
-           new Supplier {LocationID= 1, InventoryID=1, FirstName="Natalie", LastName= "Reynolds", PhoneNumber=02127726123, Email="nataliereynolds@gmail.com", City="Auckland", Address="42 Pine Street, Grey Lynn", Zip=1021},
+           new Supplier {LocationID= 1, InventoryID=1, FirstName="Natalie", LastName= "Reynolds", PhoneNumber=0212772612, Email="nataliereynolds@gmail.com", City="Auckland", Address="42 Pine Street, Grey Lynn", Zip=1021},
            new Supplier {LocationID= 2, InventoryID=2, FirstName="Connor", LastName= "Mitchell", PhoneNumber=0218273672, Email="connorm1@gmail.com", City="Auckland", Address="15 Ocean Avenue, Devonport", Zip=0624},
            new Supplier {LocationID= 3, InventoryID=3, FirstName="Harper", LastName= "Evans", PhoneNumber=0219283714, Email="harperevan22@gmail.com", City="Christchurch", Address="25 Cathedral Square, Christchurch Central", Zip=8011},
            new Supplier {LocationID= 4, InventoryID=4, FirstName="Sebastian", LastName= "Hayes", PhoneNumber=0212928371, Email="sebastianH2@gmail.com", City="Auckland", Address="28 Elm Road, Mount Eden", Zip=1024},
