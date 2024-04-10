@@ -92,10 +92,10 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                 {
                     MotorcycleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
-                    Weight = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Colour = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Weight = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Colour = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,7 +216,7 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Zip = table.Column<int>(type: "int", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false)
                 },
@@ -262,12 +262,12 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LocationID = table.Column<int>(type: "int", nullable: false),
                     InventoryID = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Zip = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

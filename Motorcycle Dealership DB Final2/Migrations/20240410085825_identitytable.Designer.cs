@@ -12,7 +12,7 @@ using Motorcycle_Dealership_DB_Final2.Areas.Identity.Data;
 namespace Motorcycle_Dealership_DB_Final2.Migrations
 {
     [DbContext(typeof(Motorcycle_Dealership_DB_Final2Context))]
-    [Migration("20240410084223_identitytable")]
+    [Migration("20240410085825_identitytable")]
     partial class identitytable
     {
         /// <inheritdoc />
@@ -353,15 +353,18 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
 
                     b.Property<string>("Colour")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Weight")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -384,7 +387,8 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
@@ -412,11 +416,13 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -424,14 +430,16 @@ namespace Motorcycle_Dealership_DB_Final2.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("InventoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("LocationID")
                         .HasColumnType("int");
