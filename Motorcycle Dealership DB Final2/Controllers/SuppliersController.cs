@@ -61,7 +61,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SupplierID,LocationID,InventoryID,FirstName,LastName,PhoneNumber,Email,City,Address,Zip")] Supplier supplier)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();
@@ -102,7 +102,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {

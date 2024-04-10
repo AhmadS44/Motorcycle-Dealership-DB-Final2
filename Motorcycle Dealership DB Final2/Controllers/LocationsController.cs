@@ -56,7 +56,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LocationID,Country,City,Address,Zip,PhoneNumber")] Location location)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(location);
                 await _context.SaveChangesAsync();
@@ -93,7 +93,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {

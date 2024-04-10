@@ -59,7 +59,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("InventoryID,MotorcycleID,Model,PhoneNumber,Email,Function")] Inventory inventory)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(inventory);
                 await _context.SaveChangesAsync();
@@ -98,7 +98,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
