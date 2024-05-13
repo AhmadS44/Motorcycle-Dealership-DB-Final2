@@ -25,7 +25,12 @@ public class Motorcycle_Dealership_DB_Final2Context : IdentityDbContext<Applicat
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
 
-public DbSet<Motorcycle_Dealership_DB_Final2.Models.Customer> Customer { get; set; } = default!;
+    internal static async Task<string?> ToListAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DbSet<Motorcycle_Dealership_DB_Final2.Models.Customer> Customer { get; set; } = default!;
 
 public DbSet<Motorcycle_Dealership_DB_Final2.Models.Inventory> Inventory { get; set; } = default!;
 

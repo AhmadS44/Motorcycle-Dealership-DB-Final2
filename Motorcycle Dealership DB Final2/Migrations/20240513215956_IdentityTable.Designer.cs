@@ -12,8 +12,8 @@ using Motorcycle_Dealership_DB_Final2.Areas.Identity.Data;
 namespace Motorcycle_Dealership_DB_Final2.Migrations
 {
     [DbContext(typeof(Motorcycle_Dealership_DB_Final2Context))]
-    [Migration("20240410102349_identitytable")]
-    partial class identitytable
+    [Migration("20240513215956_IdentityTable")]
+    partial class IdentityTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -31,6 +31,11 @@ namespace Motorcycle_Dealership_DB_Final2.Models
         public string Email { get; set; }
 
 
-        public ICollection<PurchaseOrder> PurchaseOrder { get; set; } 
+        public ICollection<PurchaseOrder> PurchaseOrder { get; set; }
+
+        internal static IQueryable<Customer> Where(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

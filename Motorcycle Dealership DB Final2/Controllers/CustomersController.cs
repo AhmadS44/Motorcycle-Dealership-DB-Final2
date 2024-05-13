@@ -20,9 +20,15 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Customer.ToListAsync());
+            IQueryable<Customer> Customers = _context.Customer;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Customers = Customers.Where(s => s.Email.Contains(searchString));
+            }
+            return View(await Customers.ToListAsync());
         }
 
         // GET: Customers/Details/5
