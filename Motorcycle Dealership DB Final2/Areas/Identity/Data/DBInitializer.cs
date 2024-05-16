@@ -83,7 +83,7 @@ namespace Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
            new Location {Country="New Zealand", City="Auckland", Address= "9 Harbour View Terrace, Herne Bay", Zip=1011, PhoneNumber=0218292837},
            new Location {Country="New Zealand", City="Auckland", Address= "56 Beach Road, Takapuna", Zip=0622, PhoneNumber=0218268274},
            new Location {Country="New Zealand", City="Wellington", Address= "7 Kelburn Parade, Kelburn", Zip=6012, PhoneNumber=0218261721},
-           new Location {Country="New Zealand", City="Wellington", Address= "18 Lamton Quay, Wellington Central", Zip=6011, PhoneNumber=0218261928},
+           new Location {Country="United States", City="Wellington", Address= "18 Lamton Quay, Wellington Central", Zip=6011, PhoneNumber=0218261928},
            new Location {Country="New Zealand", City="Auckland", Address= "37 Queen Street, Auckland Central", Zip=1010, PhoneNumber=0218734824},
            new Location {Country="New Zealand", City="Auckland", Address= "63 Hillside Road, Parnell", Zip=1052, PhoneNumber=0218831124},
             };

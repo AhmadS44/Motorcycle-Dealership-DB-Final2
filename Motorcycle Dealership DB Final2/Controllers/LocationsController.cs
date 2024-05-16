@@ -20,9 +20,15 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Locations
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Location.ToListAsync());
+            IQueryable<Location> Locations = _context.Location;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Locations = Locations.Where(s => s.Country.Contains(searchString));
+            }
+            return View(await Locations.ToListAsync());
         }
 
         // GET: Locations/Details/5

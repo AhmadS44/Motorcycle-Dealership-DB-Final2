@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Motorcycle_Dealership_DB_Final2.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityTable : Migration
+    public partial class identitytable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

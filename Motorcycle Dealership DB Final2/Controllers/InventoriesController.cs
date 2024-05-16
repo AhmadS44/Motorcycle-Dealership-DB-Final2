@@ -20,10 +20,16 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Inventories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            IQueryable<Inventory> Inventories = _context.Inventory;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Inventories = Inventories.Where(s => s.Model.Contains(searchString));
+            }
             var motorcycle_Dealership_DB_Final2Context = _context.Inventory.Include(i => i.motorcycle);
-            return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
+            return View(await Inventories.ToListAsync());
         }
 
         // GET: Inventories/Details/5
