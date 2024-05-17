@@ -20,9 +20,15 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Suppliers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var motorcycle_Dealership_DB_Final2Context = _context.Supplier.Include(s => s.Inventory).Include(s => s.Location);
+            IQueryable<Supplier> Suppliers = _context.Supplier;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Suppliers = Suppliers.Where(s => s.FirstName.Contains(searchString));
+            }
+            var motorcycle_Dealership_DB_Final2Context = Suppliers.Include(s => s.Inventory).Include(s => s.Location);
             return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
         }
 

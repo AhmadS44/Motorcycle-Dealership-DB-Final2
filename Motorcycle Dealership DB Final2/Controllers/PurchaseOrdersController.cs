@@ -20,9 +20,15 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: PurchaseOrders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var motorcycle_Dealership_DB_Final2Context = _context.PurchaseOrder.Include(p => p.customer);
+            IQueryable<PurchaseOrder> PurchaseOrders = _context.PurchaseOrder;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                PurchaseOrders = PurchaseOrders.Where(s => s.Model.Contains(searchString));
+            }
+            var motorcycle_Dealership_DB_Final2Context = PurchaseOrders.Include(p => p.customer);
             return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
         }
 
