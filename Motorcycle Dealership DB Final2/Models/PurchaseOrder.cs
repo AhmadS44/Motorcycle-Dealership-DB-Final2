@@ -7,7 +7,7 @@ namespace Motorcycle_Dealership_DB_Final2.Models
         public int PurchaseOrderID { get; set; }
         public int CustomerID { get; set; }
 
-        [Display(Name = "PurchaseDate")]
+        [Display(Name = "Purchase Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime PurchaseDate { get; set; }
@@ -23,7 +23,7 @@ namespace Motorcycle_Dealership_DB_Final2.Models
 
         [Required]
         [Range(0210000000, 0219999999, ErrorMessage = "Please enter a vaild phone number (021-0000000)")]
-        [Display(Name = "PhoneNumber")]
+        [Display(Name = "Phone Number")]
         public int PhoneNumber {  get; set; }  
 
 

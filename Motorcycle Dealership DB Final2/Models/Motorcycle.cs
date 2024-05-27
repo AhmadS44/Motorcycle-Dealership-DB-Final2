@@ -12,7 +12,6 @@ namespace Motorcycle_Dealership_DB_Final2.Models
 
         [Required]
         [Range(1900, 2024, ErrorMessage = "Please enter a vaild year (1900 - 2024)")]
-        [Display(Name = "Year")]
         public int Year { get; set; }
 
         [Required]

@@ -9,16 +9,18 @@ namespace Motorcycle_Dealership_DB_Final2.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         [Required]
         [StringLength(10)]
+        [Display (Name = "First Name")]
         public string FirstName { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         [Required]
         [StringLength(10)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
         [Range(0210000000, 0219999999, ErrorMessage = "Please enter a vaild phone number (021-0000000)")]
-        [Display(Name = "PhoneNumber")]
+        [Display(Name = "Phone Number")]
         public int PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
