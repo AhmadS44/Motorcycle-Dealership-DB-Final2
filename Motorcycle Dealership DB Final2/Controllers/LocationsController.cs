@@ -20,15 +20,31 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Locations
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            IQueryable<Location> Locations = _context.Location;
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["AddressSortParm"] = String.IsNullOrEmpty(sortOrder) ? "address_desc" : "address";
+
+            var locations = from l in _context.Location
+                            select l;
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                Locations = Locations.Where(s => s.Country.Contains(searchString));
+                locations = locations.Where(s => s.Country.Contains(searchString));
             }
-            return View(await Locations.ToListAsync());
+
+            switch (sortOrder)
+            {
+                case "address_desc":
+                    locations = locations.OrderByDescending(s => s.Address);
+                    break;
+                default:
+                    locations = locations.OrderBy(s => s.Address);
+                    break;
+
+            }
+            return View(await locations.ToListAsync());
         }
 
         // GET: Locations/Details/5

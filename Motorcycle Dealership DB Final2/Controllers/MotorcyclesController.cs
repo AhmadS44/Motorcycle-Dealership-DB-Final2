@@ -20,15 +20,31 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Motorcycles
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            IQueryable<Motorcycle> Motorcycles = _context.Motorcycle;
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["ModelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "model_desc" : "model";
+
+            var motorcycles = from m in _context.Motorcycle
+                            select m;
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                Motorcycles = Motorcycles.Where(s => s.Model.Contains(searchString));
+                motorcycles = motorcycles.Where(s => s.Model.Contains(searchString));
             }
-            return View(await Motorcycles.ToListAsync());
+            switch (sortOrder)
+            {
+                case "model_desc":
+                    motorcycles = motorcycles.OrderByDescending(s => s.Model);
+                    break;
+                default:
+                    motorcycles = motorcycles.OrderBy(s => s.Model);
+                    break;
+
+            }
+            return View(await motorcycles.ToListAsync());
+
         }
 
         // GET: Motorcycles/Details/5
