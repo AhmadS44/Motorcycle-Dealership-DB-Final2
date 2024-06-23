@@ -20,16 +20,35 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Inventories
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            IQueryable<Inventory> Inventories = _context.Inventory;
+            
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["ModelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "model_desc" : "model";
+
+            var inventories = from i in _context.Inventory
+                            select i;
+
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                Inventories = Inventories.Where(s => s.Model.Contains(searchString));
+                inventories = inventories.Where(s => s.Model.Contains(searchString));
             }
-            var motorcycle_Dealership_DB_Final2Context = _context.Inventory.Include(i => i.motorcycle);
-            return View(await Inventories.ToListAsync());
+
+            switch (sortOrder)
+            {
+                case "model_desc":
+                    inventories = inventories.OrderByDescending(s => s.Model);
+                    break;
+                default:
+                    inventories = inventories.OrderBy(s => s.Model);
+                    break;
+
+            }
+
+            return View(await inventories.ToListAsync());
+          
         }
 
         // GET: Inventories/Details/5
