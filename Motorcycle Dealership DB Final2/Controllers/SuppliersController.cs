@@ -20,15 +20,30 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Suppliers
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            IQueryable<Supplier> Suppliers = _context.Supplier;
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["FirstNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "firstname_desc" : "firstname";
+
+            var suppliers = from s in _context.Supplier
+                            select s;
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                Suppliers = Suppliers.Where(s => s.FirstName.Contains(searchString));
+                suppliers = suppliers.Where(s => s.FirstName.Contains(searchString));
             }
-            var motorcycle_Dealership_DB_Final2Context = Suppliers.Include(s => s.Inventory).Include(s => s.Location);
+            switch (sortOrder)
+            {
+                case "firstname_desc":
+                    suppliers = suppliers.OrderByDescending(s => s.FirstName);
+                    break;
+                default:
+                    suppliers = suppliers.OrderBy(s => s.FirstName);
+                    break;
+
+            }
+            var motorcycle_Dealership_DB_Final2Context = suppliers.Include(s => s.Inventory).Include(s => s.Location);
             return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
         }
 

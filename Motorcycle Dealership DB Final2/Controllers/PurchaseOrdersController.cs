@@ -20,15 +20,33 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: PurchaseOrders
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            IQueryable<PurchaseOrder> PurchaseOrders = _context.PurchaseOrder;
+
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["ModelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "model_desc" : "model";
+
+            var purchaseorders = from p in _context.PurchaseOrder
+                              select p;
+
+
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                PurchaseOrders = PurchaseOrders.Where(s => s.Model.Contains(searchString));
+                purchaseorders = purchaseorders.Where(s => s.Model.Contains(searchString));
             }
-            var motorcycle_Dealership_DB_Final2Context = PurchaseOrders.Include(p => p.customer);
+            switch (sortOrder)
+            {
+                case "model_desc":
+                    purchaseorders = purchaseorders.OrderByDescending(s => s.Model);
+                    break;
+                default:
+                    purchaseorders = purchaseorders.OrderBy(s => s.Model);
+                    break;
+
+            }
+            var motorcycle_Dealership_DB_Final2Context = purchaseorders.Include(p => p.customer);
             return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
         }
 

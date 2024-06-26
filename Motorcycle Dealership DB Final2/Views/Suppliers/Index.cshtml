@@ -25,7 +25,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">FirstName</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastName)

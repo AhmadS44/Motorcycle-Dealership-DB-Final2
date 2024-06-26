@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.PurchaseDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Model)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ModelSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Model</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Zip)
