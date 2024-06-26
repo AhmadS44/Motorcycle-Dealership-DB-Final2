@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Motorcycle_Dealership_DB_Final2.Models.Inventory>
+﻿@model PaginatedList<Motorcycle_Dealership_DB_Final2.Models.Inventory>
 
 @{
     ViewData["Title"] = "Index";
@@ -31,13 +31,13 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["PhoneNumberSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">PhoneNumber</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Function)
+                Function
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MotorcycleID)
+                MotorcycleID
             </th>
             <th></th>
         </tr>
@@ -69,3 +69,23 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+

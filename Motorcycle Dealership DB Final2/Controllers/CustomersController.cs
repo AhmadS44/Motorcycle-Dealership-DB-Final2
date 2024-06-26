@@ -20,13 +20,22 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter,int? pageNumber)
         {
-
-            ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["FirstNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "firstname_desc" : "firstname";
             ViewData["LastNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lastname_desc" : "lastname";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
 
             var customers = from c in _context.Customer
                             select c;
@@ -54,7 +63,10 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
                     break;
 
             }
-            return View(await customers.ToListAsync());
+
+            //this is the pagination page size, so there will be 5 datas on each page//
+            int pageSize = 5;
+            return View(await PaginatedList<Customer>.CreateAsync(customers.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Customers/Details/5

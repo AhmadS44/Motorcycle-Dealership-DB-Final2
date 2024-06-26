@@ -20,7 +20,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Suppliers
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
@@ -50,8 +50,9 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
                     break;
 
             }
-            var motorcycle_Dealership_DB_Final2Context = suppliers.Include(s => s.Inventory).Include(s => s.Location);
-            return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
+            //this is the pagination page size, so there will be 5 datas on each page//
+            int pageSize = 5;
+            return View(await PaginatedList<Supplier>.CreateAsync(suppliers.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Suppliers/Details/5

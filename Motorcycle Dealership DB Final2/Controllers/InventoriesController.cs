@@ -20,7 +20,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: Inventories
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
             
             ViewData["CurrentFilter"] = searchString;
@@ -54,8 +54,10 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
 
             }
 
-            return View(await inventories.ToListAsync());
-          
+            //this is the pagination page size, so there will be 5 datas on each page//
+            int pageSize = 5;
+            return View(await PaginatedList<Inventory>.CreateAsync(inventories.AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Inventories/Details/5

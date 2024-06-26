@@ -20,7 +20,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
         }
 
         // GET: PurchaseOrders
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
 
             ViewData["CurrentFilter"] = searchString;
@@ -53,8 +53,9 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
                     break;
 
             }
-            var motorcycle_Dealership_DB_Final2Context = purchaseorders.Include(p => p.customer);
-            return View(await motorcycle_Dealership_DB_Final2Context.ToListAsync());
+            //this is the pagination page size, so there will be 5 datas on each page//
+            int pageSize = 5;
+            return View(await PaginatedList<PurchaseOrder>.CreateAsync(purchaseorders.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: PurchaseOrders/Details/5
