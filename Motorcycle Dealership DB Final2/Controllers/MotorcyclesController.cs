@@ -25,6 +25,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["ModelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "model_desc" : "model";
+            ViewData["YearSortParm"] = String.IsNullOrEmpty(sortOrder) ? "year_desc" : "year";
 
             var motorcycles = from m in _context.Motorcycle
                             select m;
@@ -37,6 +38,12 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             {
                 case "model_desc":
                     motorcycles = motorcycles.OrderByDescending(s => s.Model);
+                    break;
+                case "year":
+                    motorcycles = motorcycles.OrderBy(s => s.Year);
+                    break;
+                case "year_desc":
+                    motorcycles = motorcycles.OrderByDescending(s => s.Year);
                     break;
                 default:
                     motorcycles = motorcycles.OrderBy(s => s.Model);

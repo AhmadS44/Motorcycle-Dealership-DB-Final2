@@ -26,6 +26,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["ModelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "model_desc" : "model";
+            ViewData["PhoneNumberSortParm"] = String.IsNullOrEmpty(sortOrder) ? "phonenumber_desc" : "phonenumber";
 
             var inventories = from i in _context.Inventory
                             select i;
@@ -40,6 +41,12 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             {
                 case "model_desc":
                     inventories = inventories.OrderByDescending(s => s.Model);
+                    break;
+                case "phonenumber":
+                    inventories = inventories.OrderBy(s => s.PhoneNumber);
+                    break;
+                case "phonenumber_desc":
+                    inventories = inventories.OrderByDescending(s => s.PhoneNumber);
                     break;
                 default:
                     inventories = inventories.OrderBy(s => s.Model);

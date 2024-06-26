@@ -26,6 +26,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["ModelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "model_desc" : "model";
+            ViewData["ZipSortParm"] = String.IsNullOrEmpty(sortOrder) ? "zip_desc" : "zip";
 
             var purchaseorders = from p in _context.PurchaseOrder
                               select p;
@@ -40,6 +41,12 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             {
                 case "model_desc":
                     purchaseorders = purchaseorders.OrderByDescending(s => s.Model);
+                    break;
+                case "zip":
+                    purchaseorders = purchaseorders.OrderBy(s => s.Zip);
+                    break;
+                case "zip_desc":
+                    purchaseorders = purchaseorders.OrderByDescending(s => s.Zip);
                     break;
                 default:
                     purchaseorders = purchaseorders.OrderBy(s => s.Model);

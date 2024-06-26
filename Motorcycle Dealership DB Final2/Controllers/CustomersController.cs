@@ -26,6 +26,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["FirstNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "firstname_desc" : "firstname";
+            ViewData["LastNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lastname_desc" : "lastname";
 
             var customers = from c in _context.Customer
                             select c;
@@ -41,6 +42,12 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             {
                 case "firstname_desc":
                     customers = customers.OrderByDescending(s => s.FirstName);
+                    break;
+                case "lastname":
+                    customers = customers.OrderBy(s => s.LastName);
+                    break;
+                case "lastname_desc":
+                    customers = customers.OrderByDescending(s => s.LastName);
                     break;
                 default:
                     customers = customers.OrderBy(s => s.FirstName);

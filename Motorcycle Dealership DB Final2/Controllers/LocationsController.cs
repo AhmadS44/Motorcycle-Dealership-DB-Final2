@@ -25,6 +25,7 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["AddressSortParm"] = String.IsNullOrEmpty(sortOrder) ? "address_desc" : "address";
+            ViewData["CitySortParm"] = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "city";
 
             var locations = from l in _context.Location
                             select l;
@@ -38,6 +39,12 @@ namespace Motorcycle_Dealership_DB_Final2.Controllers
             {
                 case "address_desc":
                     locations = locations.OrderByDescending(s => s.Address);
+                    break;
+                case "city":
+                    locations = locations.OrderBy(s => s.City);
+                    break;
+                case "city_desc":
+                    locations = locations.OrderByDescending(s => s.City);
                     break;
                 default:
                     locations = locations.OrderBy(s => s.Address);

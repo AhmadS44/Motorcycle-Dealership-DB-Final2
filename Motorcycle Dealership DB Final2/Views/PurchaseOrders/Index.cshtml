@@ -31,7 +31,7 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["ModelSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Model</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zip)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ZipSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Zip</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
