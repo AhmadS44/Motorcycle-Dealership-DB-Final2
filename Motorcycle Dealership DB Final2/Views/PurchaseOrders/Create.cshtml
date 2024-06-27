@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    DateTime min = DateTime.Today.AddMonths((-6)); //this means you can only put a date 6 months forwards from the date now//
 }
 
 <h1>Create</h1>
@@ -18,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PurchaseDate" class="control-label"></label>
-                <input asp-for="PurchaseDate" class="form-control" />
+                <input asp-for="PurchaseDate" class="form-control" type ="date" min="@min.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")"/>
                 <span asp-validation-for="PurchaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
