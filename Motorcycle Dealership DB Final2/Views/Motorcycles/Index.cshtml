@@ -1,5 +1,9 @@
 ﻿@model PaginatedList<Motorcycle_Dealership_DB_Final2.Models.Motorcycle>
+@using Microsoft.AspNetCore.Identity
+@using Motorcycle_Dealership_DB_Final2.Areas.Identity.Data
 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -54,11 +58,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Colour)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MotorcycleID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MotorcycleID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MotorcycleID">Delete</a>
-            </td>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MotorcycleID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.MotorcycleID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.MotorcycleID">Delete</a>
+                    </td>
+                }
+           
         </tr>
 }
     </tbody>

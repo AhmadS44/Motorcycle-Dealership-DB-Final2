@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Motorcycle_Dealership_DB_Final2.Models;
 
 namespace Motorcycle_Dealership_DB_Final2.Controllers
 {
+    [Authorize]
     public class SuppliersController : Controller
     {
         private readonly Motorcycle_Dealership_DB_Final2Context _context;
